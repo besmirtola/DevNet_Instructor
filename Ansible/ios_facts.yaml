@@ -1,0 +1,41 @@
+---
+- name: AUTOMATIC CHECK OF VERSION, INTERFACES, and CLEAR COUNTERS
+  hosts: CSR1kv
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: running multiple commands to check device version and INTERFACES
+      ios_command:
+        commands:
+          - show version
+          - show interfaces
+        wait_for:
+          - result[0] contains IOS
+          - result[1] contains GigabitEthernet
+      register: config
+
+    - name: SAVE VERSION TO ./ios_facts/
+      copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "ios_facts/show_version_{{ inventory_hostname }}.txt"
+    
+    - name: SAVE INTERFACES TO ./ios_facts/
+      copy:
+        content: "{{ config.stdout[1] }}"
+        dest: "ios_facts/show_interfaces_{{ inventory_hostname }}.txt"
+    
+    - name: run command that require answering a prompt
+      ios_command:
+        commands:
+          - command: clear counters GigabitEthernet1
+            prompt: Clear "show interface" counters on this interface \[confirm\]
+            answer: y
+      register: config
+
+    - name: save clear counter output to ./ios_facts/
+      copy:
+        content: "{{ config.stdout[2] }}"
+        dest: "ios_facts/clear_counters_{{ inventory_hostname }}.txt"
+        
+      
