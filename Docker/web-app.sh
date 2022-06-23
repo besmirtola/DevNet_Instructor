@@ -3,7 +3,7 @@ FILE=./Dockerfile
 if [ -f "$FILE" ]; then
     echo "$FILE exists."
     docker build -t sampleapp .
-    docker run -t -d -p 8081:8081 --name docker_app sampleapp
+    docker run -t -d -p 8088:8088 --name docker_app sampleapp
     docker ps -a
 else 
     echo "$FILE does not exist."
@@ -17,7 +17,7 @@ else
     echo "CMD python3 /home/myapp/web_app_flask.py" >> Dockerfile
 
     docker build -t sampleapp .
-    docker run -t -d -p 8081:8081 --name docker_app sampleapp
+    docker run -t -d -p 8088:8088 --name docker_app sampleapp
     docker ps -a
 fi
 
