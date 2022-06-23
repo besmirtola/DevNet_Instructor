@@ -25,17 +25,20 @@
         content: "{{ config.stdout[1] }}"
         dest: "ios_facts/show_interfaces_{{ inventory_hostname }}.txt"
     
-    - name: run command that require answering a prompt
-      ios_command:
-        commands:
-          - command: clear counters GigabitEthernet1
-            prompt: Clear "show interface" counters on this interface \[confirm\]
-            answer: y
-      register: config
+    # - name: run command that require answering a prompt
+    #   ios_command:
+    #     commands:
+    #       - command: clear counters GigabitEthernet1
+    #         prompt: Clear "show interface" counters on this interface \[confirm\]
+    #         answer: y
+    #   register: config
+    
+    - name: configure buffer size
+      ios_logging:
+        dest: buffered
+        size: 5000
 
-    - name: save clear counter output to ./ios_facts/
-      copy:
-        content: "{{ config.stdout[2] }}"
-        dest: "ios_facts/clear_counters_{{ inventory_hostname }}.txt"
-        
+    - name: run show version on remote devices
+      ios_command:
+        commands: show version
       
