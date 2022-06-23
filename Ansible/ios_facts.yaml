@@ -1,44 +1,29 @@
 ---
-- name: AUTOMATIC CHECK OF VERSION, INTERFACES, and CLEAR COUNTERS
+- name: AUTOMATED CHECK OF IOS VERSION, INTERFACES AND SET BUFFER SIZE
   hosts: CSR1kv
   gather_facts: false
   connection: local
 
   tasks:
-    - name: running multiple commands to check device version and INTERFACES
-      ios_command:
-        commands:
-          - show version
-          - show interfaces
-        wait_for:
-          - result[0] contains IOS
-          - result[1] contains GigabitEthernet
-      register: config
+    - name: Gather L3 interfaces facts
+      ios_facts:
+        gather_subset: min
+        gather_network_resources: l3_interfaces
 
-    - name: SAVE VERSION TO ./ios_facts/
-      copy:
-        content: "{{ config.stdout[0] }}"
-        dest: "ios_facts/show_version_{{ inventory_hostname }}.txt"
-    
-    - name: SAVE INTERFACES TO ./ios_facts/
-      copy:
-        content: "{{ config.stdout[1] }}"
-        dest: "ios_facts/show_interfaces_{{ inventory_hostname }}.txt"
-    
-    # - name: run command that require answering a prompt
-    #   ios_command:
-    #     commands:
-    #       - command: clear counters GigabitEthernet1
-    #         prompt: Clear "show interface" counters on this interface \[confirm\]
-    #         answer: y
-    #   register: config
-    
+    - name: display interface name
+      debug:
+        msg: "The L3 interface types are: {{ ansible_network_resources }}"
+
     - name: configure buffer size
       ios_logging:
         dest: buffered
         size: 5000
 
-    - name: run show version on remote devices
+    - name: run command sh ip int br 
       ios_command:
-        commands: show version
-      
+        commands: show ip int br
+      register: interfaces
+  
+    - name: display interfaces
+      debug:
+        var: interfaces["stdout_lines"][0]
