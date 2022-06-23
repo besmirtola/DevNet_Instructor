@@ -24,3 +24,21 @@ Task 3 -- Docker !
 3. Task implementation => A dockerfile is created and contains all instructions for setting up the service. Specifically, flask framwork is used to develop the app. The app is a very simple Python script that will display some html title and body text, in addition to a current date through a javascript in the localhost (0.0.0.0:8088). This script is exploited and a docker image is build with necessary commands to setup the app and download the image. The bash script "web-app.sh" contains all the commands that perform such actions and finally executes the docker run command which actually creates the docker container from the built image and exposes the service on the virtual/localhost on port 8088, as requested by the task.
 4. Task troubleshooting => no issues encountered.
 5. Task verification => refer to the two screenshots uploaded un the task folder. The screenshots show the docker container deployment and the web application runing on the localhost:8088.
+
+
+Task 4 -- Jenkins !
+
+1. Task name => jenkins
+2. Task preparation => A working docker application is required.
+3. Task implementation => Jenskins server is downloaded and run in a docker container. Jenkins is configured by setting the right git repository and access credentials. The web app of task 3 is then used for executing a build of the application through Jenkins jobs (refer to dockerwebapp_jenkins_build.png). Again, Jenkins is used to test the application by executing a check of the application. Finally, CI/CD pipeline job is configured for building the application. The essence of the pipeline is to stop and remove any existing web app container, then building it again, and finally verifying it works. This way, any chode changes in the application will be continuously integrated and the app will be build automatically and ready for deployment.
+4. Task troubleshooting => No issues were faced in setting up Jenkins and the specific jobs.
+5. Task verification => Refer to screenshots uploaded under the same task directory.
+
+
+Task 5 -- REST API & RESTCONF !
+
+1. Task name => restconf
+2. Task preparation => No specific requirements beside having a running image of the virtual router CSR1kv.
+3. Task implementation => The task consists of transforming curl commands into python scripts that achieve the same goal, i.e., performing configuration commands on the virtual router CSR1kv, by using the RESTCONF protocol. Various python scripts have been created for achieving different goals like creating loopback interfaces, fetching all configured interfaces, and deleting the loopback. Each of these tasks corresponds to a specific python file under the Restconf folder.
+Task troubleshooting => No major issues were faced during the task implementation.
+Task verification => Refer to screenshots uploaded under the RESTCONF_python_verifications directory.
