@@ -4,8 +4,13 @@
     <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
-    <h1>DevNet Associate Skills Test {{request.remote_addr}}</h1>
+    <h1>DevNet Associate Skills Test</h1>
     <p>Created by: Besmir Tola</p>
-    <p>Date: {{request.current.Date}}</p>
+    <p>Date: <span id='date-time'></span>.</p>
 </body>
+
+<script>
+var dt = new Date();
+document.getElementById('date-time').innerHTML=dt;
+</script>
 </html>
