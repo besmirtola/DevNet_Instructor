@@ -42,3 +42,12 @@ Task 5 -- REST API & RESTCONF !
 3. Task implementation => The task consists of transforming curl commands into python scripts that achieve the same goal, i.e., performing configuration commands on the virtual router CSR1kv, by using the RESTCONF protocol. Various python scripts have been created for achieving different goals like creating loopback interfaces, fetching all configured interfaces, and deleting the loopback. Each of these tasks corresponds to a specific python file under the Restconf folder.
 Task troubleshooting => No major issues were faced during the task implementation.
 Task verification => Refer to screenshots uploaded under the RESTCONF_python_verifications directory.
+
+
+Task 6 -- WEBEX TEAMS API !
+
+1. Task name => webex
+2. Task preparation => The usual DEVASC VM running. Retrieve a personal token from developer.webex.com .
+3. Task implementation => The task consists of developing python scripts that perform REST requests to the Webex Teams API. In particular, the implementation includes the creation of a specific Room (or Space), add a specific memeber (Yvan) , post a few messages, and the upload screenshot attachments of the other tasks implementations.
+4. Task troubleshooting => No issues were faced during the task implementation.
+5. Task verification => Refer to screenshots uploaded under the relative directory.
