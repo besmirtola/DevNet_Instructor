@@ -21,9 +21,11 @@ Task 3 -- Docker !
 
 1. Task name => Docker
 2. Task preparation => Refer to Ansible playbook given for building a docker image that spins up a webserver (web app) for which the service is exposed to port 8088. All scripts are under the Docker folder.
-3. Task implementation => A dockerfile is created and contains all instructions for setting up the service. Specifically, flask framwork is used to develop the app. The app is a very simple Python script that will display some html title and body text, in addition to a current date through a javascript in the localhost (0.0.0.0:8088). This script is exploited and a docker image is build with necessary commands to setup the app and download the image. The bash script "web-app.sh" contains all the commands that perform such actions and finally executes the docker run command which actually creates the docker container from the built image and exposes the service on the virtual/localhost on port 8088, as requested by the task.
-4. Task troubleshooting => no issues encountered.
-5. Task verification => refer to the two screenshots uploaded un the task folder. The screenshots show the docker container deployment and the web application runing on the localhost:8088.
+3. 
+a) Task implementation => A dockerfile is created and contains all instructions for setting up the service. Specifically, flask framework is used to develop the app. The app is a very simple Python script that will display some html title and body text, in addition to a current date through a javascript in the localhost (0.0.0.0:8088). This script is exploited and a docker image is build with necessary commands to setup the app and download the image. The bash script "web-app.sh" contains all the commands that perform such actions and finally executes the docker run command which actually creates the docker container from the built image and exposes the service on the virtual/localhost on port 8088, as requested by the task.
+b) very similalry to the a) part, apache2 can be used instead of flask. Specifically, the official image from [https://hub.docker.com/_/httpd](url) is used to pull the image 
+5. Task troubleshooting => no issues encountered.
+6. Task verification => refer to the two screenshots uploaded un the task folder. The screenshots show the docker container deployment and the web application runing on the localhost:8088.
 
 
 Task 4 -- Jenkins !
